@@ -1,230 +1,731 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mun Rohim | Backend Developer</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Mun Rohim | Backend Engineer</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-:root {
-  --bg: #0f172a;
-  --card: #1e293b;
-  --text: #ffffff;
-  --sub: #94a3b8;
-  --primary: #22c55e;
+
+:root{
+  --bg:#020617;
+  --card:#0f172a;
+  --soft:#1e293b;
+  --primary:#22c55e;
+  --text:#f8fafc;
+  --sub:#94a3b8;
+  --border:#334155;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  scroll-behavior:smooth;
 }
 
-body {
-  font-family: Arial, sans-serif;
-  background: var(--bg);
-  color: var(--text);
+body{
+  font-family:'Inter',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
 }
 
-/* NAV */
-.nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
-  max-width: 1000px;
-  margin: auto;
+/* SCROLLBAR */
+::-webkit-scrollbar{
+  width:8px;
 }
 
-.nav a {
-  color: var(--sub);
-  text-decoration: none;
-  margin-left: 15px;
-  font-size: 14px;
+::-webkit-scrollbar-thumb{
+  background:var(--primary);
+  border-radius:10px;
 }
 
 /* CONTAINER */
-.container {
-  max-width: 1000px;
-  margin: auto;
-  padding: 20px;
+.container{
+  width:90%;
+  max-width:1100px;
+  margin:auto;
+}
+
+/* NAVBAR */
+.nav{
+  position:sticky;
+  top:0;
+  z-index:100;
+  backdrop-filter:blur(12px);
+  background:rgba(2,6,23,0.8);
+  border-bottom:1px solid rgba(255,255,255,0.05);
+}
+
+.nav-wrapper{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 0;
+}
+
+.logo{
+  font-size:22px;
+  font-weight:700;
+  color:white;
+}
+
+.logo span{
+  color:var(--primary);
+}
+
+.nav-links a{
+  color:var(--sub);
+  text-decoration:none;
+  margin-left:25px;
+  transition:0.3s;
+  font-size:15px;
+}
+
+.nav-links a:hover{
+  color:white;
 }
 
 /* HERO */
-.hero {
-  text-align: center;
-  padding: 80px 20px;
-  animation: fadeIn 1s ease;
+.hero{
+  min-height:90vh;
+  display:flex;
+  align-items:center;
 }
 
-.profile {
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
-  border: 3px solid var(--primary);
-  margin-bottom: 20px;
-  object-fit: cover;
-  box-shadow: 0 0 20px rgba(34,197,94,0.4);
-  transition: 0.3s;
+.hero-content{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:50px;
+  align-items:center;
 }
 
-.profile:hover {
-  transform: scale(1.01);
+.hero-text h1{
+  font-size:60px;
+  line-height:1.1;
+  margin-bottom:20px;
 }
 
-.hero h1 {
-  font-size: 42px;
+.hero-text h1 span{
+  color:var(--primary);
 }
 
-.hero p {
-  color: var(--sub);
-  margin-top: 10px;
+.hero-text p{
+  color:var(--sub);
+  font-size:18px;
+  line-height:1.8;
+  margin-bottom:30px;
 }
 
-.btn {
-  display: inline-block;
-  margin: 10px;
-  padding: 10px 20px;
-  border-radius: 6px;
-  text-decoration: none;
-  font-weight: bold;
+.hero-btns{
+  display:flex;
+  gap:15px;
+  flex-wrap:wrap;
 }
 
-.github { background: var(--primary); color: black; }
-.email { background: #2563eb; color: white; }
+.btn{
+  padding:14px 24px;
+  border-radius:12px;
+  text-decoration:none;
+  font-weight:600;
+  transition:0.3s;
+}
+
+.btn-primary{
+  background:var(--primary);
+  color:black;
+}
+
+.btn-primary:hover{
+  transform:translateY(-3px);
+}
+
+.btn-secondary{
+  border:1px solid var(--border);
+  color:white;
+}
+
+.btn-secondary:hover{
+  background:var(--soft);
+}
+
+/* HERO IMAGE */
+.hero-image{
+  text-align:center;
+  position:relative;
+}
+
+.profile{
+  width:320px;
+  height:320px;
+  border-radius:30px;
+  object-fit:cover;
+  border:3px solid rgba(34,197,94,0.3);
+  box-shadow:
+  0 0 50px rgba(34,197,94,0.25);
+  animation:float 4s ease-in-out infinite;
+}
+
+.glow{
+  position:absolute;
+  width:350px;
+  height:350px;
+  background:rgba(34,197,94,0.15);
+  filter:blur(100px);
+  z-index:-1;
+  top:0;
+  left:50%;
+  transform:translateX(-50%);
+}
 
 /* SECTION */
-.section {
-  margin-top: 60px;
+.section{
+  padding:100px 0;
 }
 
-.section h2 {
-  margin-bottom: 15px;
+.section-title{
+  font-size:40px;
+  margin-bottom:15px;
 }
 
-/* GRID */
-.grid {
-  display: grid;
-  gap: 20px;
+.section-sub{
+  color:var(--sub);
+  margin-bottom:50px;
 }
 
-.card {
-  background: var(--card);
-  padding: 20px;
-  border-radius: 12px;
-  transition: 0.3s;
+/* ABOUT */
+.about-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:30px;
 }
 
-.card:hover {
-  transform: translateY(-5px);
+.card{
+  background:var(--card);
+  border:1px solid rgba(255,255,255,0.05);
+  padding:30px;
+  border-radius:24px;
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:translateY(-8px);
+  border-color:rgba(34,197,94,0.3);
+}
+
+.card h3{
+  margin-bottom:15px;
+}
+
+/* PROJECT */
+.projects{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:25px;
+}
+
+.project-card{
+  background:var(--card);
+  border-radius:24px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,0.05);
+  transition:0.3s;
+}
+
+.project-card:hover{
+  transform:translateY(-8px);
+}
+
+.project-content{
+  padding:25px;
+}
+
+.project-content h3{
+  margin-bottom:10px;
+}
+
+.project-content p{
+  color:var(--sub);
+  line-height:1.7;
+  margin-bottom:20px;
+}
+
+.tags{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:20px;
+}
+
+.tag{
+  background:rgba(34,197,94,0.15);
+  color:var(--primary);
+  padding:6px 12px;
+  border-radius:999px;
+  font-size:13px;
+}
+
+/* SKILLS */
+.skills{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:20px;
+}
+
+.skill{
+  background:var(--card);
+  padding:25px;
+  border-radius:20px;
+  text-align:center;
+  border:1px solid rgba(255,255,255,0.05);
+}
+
+.skill h3{
+  margin-top:10px;
+}
+
+/* EXPERIENCE */
+.timeline{
+  border-left:2px solid rgba(34,197,94,0.3);
+  padding-left:30px;
+}
+
+.timeline-item{
+  margin-bottom:40px;
+  position:relative;
+}
+
+.timeline-item::before{
+  content:'';
+  width:15px;
+  height:15px;
+  border-radius:50%;
+  background:var(--primary);
+  position:absolute;
+  left:-39px;
+  top:5px;
+}
+
+.timeline-item h3{
+  margin-bottom:5px;
+}
+
+.timeline-item p{
+  color:var(--sub);
+  line-height:1.7;
+}
+
+/* CONTACT */
+.contact-box{
+  background:linear-gradient(
+  135deg,
+  rgba(34,197,94,0.15),
+  rgba(59,130,246,0.08)
+  );
+  border:1px solid rgba(255,255,255,0.05);
+  padding:50px;
+  border-radius:30px;
+  text-align:center;
+}
+
+.contact-box h2{
+  margin-bottom:15px;
+}
+
+.contact-box p{
+  color:var(--sub);
+  margin-bottom:25px;
 }
 
 /* FOOTER */
-.footer {
-  text-align: center;
-  margin: 60px 0 20px;
-  color: var(--sub);
-  font-size: 14px;
+.footer{
+  padding:40px 0;
+  text-align:center;
+  color:var(--sub);
+  border-top:1px solid rgba(255,255,255,0.05);
 }
 
 /* ANIMATION */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px);}
-  to { opacity: 1; transform: translateY(0);}
+@keyframes float{
+  0%{transform:translateY(0px);}
+  50%{transform:translateY(-10px);}
+  100%{transform:translateY(0px);}
 }
 
 /* RESPONSIVE */
-@media (min-width: 768px) {
-  .grid-2 {
-    grid-template-columns: 1fr 1fr;
-  }
+@media(max-width:900px){
 
-  .hero h1 {
-    font-size: 52px;
-  }
+.hero-content,
+.about-grid{
+  grid-template-columns:1fr;
 }
+
+.hero{
+  padding-top:60px;
+}
+
+.hero-text{
+  text-align:center;
+}
+
+.hero-btns{
+  justify-content:center;
+}
+
+.hero-text h1{
+  font-size:42px;
+}
+
+.profile{
+  width:240px;
+  height:240px;
+}
+
+.nav-links{
+  display:none;
+}
+
+.section-title{
+  font-size:32px;
+}
+
+}
+
 </style>
 </head>
 
 <body>
 
-<!-- NAV -->
-<div class="nav">
-  <strong>Mun Rohim</strong>
-  <div>
-    <a href="#about">About</a>
-    <a href="#project">Project</a>
-    <a href="#contact">Contact</a>
-  </div>
-</div>
+<!-- NAVBAR -->
+<nav class="nav">
+  <div class="container nav-wrapper">
 
-<div class="container">
+    <div class="logo">
+      Mun<span>Rohim</span>
+    </div>
+
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </div>
+
+  </div>
+</nav>
 
 <!-- HERO -->
 <section class="hero">
-  <img src="profile.jpg" class="profile">
-  <h1>Backend Engineer</h1>
-  <p>Laravel • API • MySQL</p>
-  <p>Building scalable backend systems for real-world applications.</p>
+  <div class="container hero-content">
 
-  <a class="btn github" href="https://github.com/mr-munrohim">GitHub</a>
-  <a class="btn email" href="mailto:mr.munrohim@gmail.com">Email</a>
-</section>
+    <div class="hero-text">
 
-<!-- ABOUT -->
-<section id="about" class="section">
-  <h2>About</h2>
-  <p>
-    Backend developer specializing in Laravel and REST API development.
-    Experienced in building booking systems, payment integrations, and scalable backend architectures.
-  </p>
-</section>
+      <h1>
+        Backend Engineer &
+        <span>System Developer</span>
+      </h1>
 
-<!-- PROJECT -->
-<section id="project" class="section">
-  <h2>Featured Project</h2>
+      <p>
+        I build scalable backend systems, REST APIs, database architectures,
+        and modern web applications using Laravel, MySQL, and modern backend technologies.
+      </p>
 
-  <div class="grid grid-2">
-    
-    <div class="card">
-      <h3>Booking & Payment API</h3>
-      <p>Backend system for booking and transaction workflows.</p>
-      <ul>
-        <li>JWT Authentication</li>
-        <li>Booking System</li>
-        <li>Payment Integration</li>
-      </ul>
-      <a class="btn github" href="https://github.com/mr-munrohim">
-        View Project
-      </a>
+      <div class="hero-btns">
+
+        <a href="https://github.com/mr-munrohim"
+           class="btn btn-primary">
+           GitHub
+        </a>
+
+        <a href="mailto:mr.munrohim@gmail.com"
+           class="btn btn-secondary">
+           Contact Me
+        </a>
+
+      </div>
+
     </div>
 
-    <div class="card">
-      <h3>Coming Soon</h3>
-      <p>More projects will be added soon.</p>
+    <div class="hero-image">
+
+      <div class="glow"></div>
+
+      <img src="profile.jpg"
+           alt="Mun Rohim"
+           class="profile">
+
     </div>
 
   </div>
 </section>
 
+<!-- ABOUT -->
+<section class="section" id="about">
+
+  <div class="container">
+
+    <h2 class="section-title">About Me</h2>
+    <p class="section-sub">
+      Backend developer with strong interest in scalable systems,
+      server infrastructure, APIs, and database management.
+    </p>
+
+    <div class="about-grid">
+
+      <div class="card">
+        <h3>Backend Development</h3>
+        <p>
+          Experienced building Laravel applications,
+          authentication systems, booking systems,
+          REST APIs, and payment integrations.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Infrastructure & Network</h3>
+        <p>
+          Experienced managing local servers,
+          XAMPP environments, database systems,
+          and local network configurations.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- PROJECTS -->
+<section class="section" id="projects">
+
+  <div class="container">
+
+    <h2 class="section-title">Featured Projects</h2>
+    <p class="section-sub">
+      Selected backend and system development projects.
+    </p>
+
+    <div class="projects">
+
+      <div class="project-card">
+
+        <div class="project-content">
+
+          <h3>Booking & Payment API</h3>
+
+          <p>
+            Backend system for reservation workflows,
+            secure authentication, and transaction processing.
+          </p>
+
+          <div class="tags">
+            <div class="tag">Laravel</div>
+            <div class="tag">JWT</div>
+            <div class="tag">REST API</div>
+            <div class="tag">MySQL</div>
+          </div>
+
+          <a href="https://github.com/mr-munrohim"
+             class="btn btn-primary">
+             View Project
+          </a>
+
+        </div>
+
+      </div>
+
+      <div class="project-card">
+
+        <div class="project-content">
+
+          <h3>School Administration System</h3>
+
+          <p>
+            Administrative information system
+            for document management and operational workflows.
+          </p>
+
+          <div class="tags">
+            <div class="tag">PHP</div>
+            <div class="tag">MySQL</div>
+            <div class="tag">Bootstrap</div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="project-card">
+
+        <div class="project-content">
+
+          <h3>Server & Local Network Setup</h3>
+
+          <p>
+            Configuration and optimization
+            of local development servers and LAN systems.
+          </p>
+
+          <div class="tags">
+            <div class="tag">Apache</div>
+            <div class="tag">Networking</div>
+            <div class="tag">Database</div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
 <!-- SKILLS -->
-<section class="section">
-  <h2>Tech Stack</h2>
-  <p>Laravel • PHP • MySQL • REST API • Git • Postman</p>
+<section class="section" id="skills">
+
+  <div class="container">
+
+    <h2 class="section-title">Tech Stack</h2>
+    <p class="section-sub">
+      Technologies and tools I work with.
+    </p>
+
+    <div class="skills">
+
+      <div class="skill">
+        <h3>Laravel</h3>
+      </div>
+
+      <div class="skill">
+        <h3>PHP</h3>
+      </div>
+
+      <div class="skill">
+        <h3>MySQL</h3>
+      </div>
+
+      <div class="skill">
+        <h3>REST API</h3>
+      </div>
+
+      <div class="skill">
+        <h3>Git & GitHub</h3>
+      </div>
+
+      <div class="skill">
+        <h3>Linux Server</h3>
+      </div>
+
+      <div class="skill">
+        <h3>Networking</h3>
+      </div>
+
+      <div class="skill">
+        <h3>Postman</h3>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- EXPERIENCE -->
+<section class="section" id="experience">
+
+  <div class="container">
+
+    <h2 class="section-title">Experience</h2>
+    <p class="section-sub">
+      Professional and technical experience.
+    </p>
+
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <h3>System & Database Administration</h3>
+        <p>
+          Managing databases, local servers,
+          operational systems, and administrative workflows.
+        </p>
+      </div>
+
+      <div class="timeline-item">
+        <h3>Backend Web Development</h3>
+        <p>
+          Developing Laravel-based systems,
+          APIs, and scalable backend architectures.
+        </p>
+      </div>
+
+      <div class="timeline-item">
+        <h3>Network Configuration</h3>
+        <p>
+          Configuring local network systems,
+          server environments, and deployment workflows.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
 </section>
 
 <!-- CONTACT -->
-<section id="contact" class="section">
-  <h2>Contact</h2>
-  <p>Email: mr.munrohim@gmail.com</p>
-  <p>WhatsApp: +62 823 4679 56xx</p>
+<section class="section" id="contact">
+
+  <div class="container">
+
+    <div class="contact-box">
+
+      <h2>Let's Build Something Great</h2>
+
+      <p>
+        Open for backend development,
+        system administration,
+        and collaborative opportunities.
+      </p>
+
+      <div class="hero-btns">
+
+        <a href="mailto:mr.munrohim@gmail.com"
+           class="btn btn-primary">
+           Email Me
+        </a>
+
+        <a href="https://github.com/mr-munrohim"
+           class="btn btn-secondary">
+           GitHub Profile
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
 </section>
 
-<div class="footer">
-  © 2026 Mun Rohim — Open for opportunities
-</div>
+<!-- FOOTER -->
+<footer class="footer">
 
-</div>
+  <div class="container">
+    © 2026 Mun Rohim — Backend Engineer & System Developer
+  </div>
+
+</footer>
 
 </body>
 </html>
+```
