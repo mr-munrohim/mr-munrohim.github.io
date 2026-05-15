@@ -2,16 +2,21 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="Mun Rohim Backend Engineer Portfolio">
-<meta name="keywords" content="Laravel, Backend Engineer, PHP Developer, REST API, MySQL">
-<meta name="author" content="Mun Rohim">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
 <title>Mun Rohim | Backend Engineer</title>
 
+<meta name="description"
+content="Mun Rohim Backend Engineer Portfolio">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
 
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -26,7 +31,6 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
   --secondary:#3b82f6;
   --text:#f8fafc;
   --sub:#94a3b8;
-  --border:#334155;
 }
 
 *{
@@ -48,18 +52,12 @@ body::before{
   position:fixed;
   inset:0;
   background:
-  radial-gradient(circle at top right, rgba(34,197,94,0.12), transparent 30%),
-  radial-gradient(circle at bottom left, rgba(59,130,246,0.12), transparent 30%);
+  radial-gradient(circle at top right,
+  rgba(34,197,94,0.12),transparent 30%),
+
+  radial-gradient(circle at bottom left,
+  rgba(59,130,246,0.12),transparent 30%);
   z-index:-1;
-}
-
-::-webkit-scrollbar{
-  width:8px;
-}
-
-::-webkit-scrollbar-thumb{
-  background:var(--primary);
-  border-radius:10px;
 }
 
 .container{
@@ -69,24 +67,63 @@ body::before{
 }
 
 /* NAVBAR */
+
 .nav{
   position:sticky;
   top:0;
   z-index:1000;
-  background:rgba(2,6,23,0.85);
   backdrop-filter:blur(15px);
+  background:rgba(2,6,23,0.82);
   border-bottom:1px solid rgba(255,255,255,0.05);
+  transition:0.4s;
+}
+
+.nav.scrolled{
+  background:rgba(2,6,23,0.95);
+  box-shadow:0 10px 30px rgba(0,0,0,0.4);
 }
 
 .nav-wrapper{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:20px 0;
+  padding:18px 0;
+  transition:0.4s;
+}
+
+.nav.scrolled .nav-wrapper{
+  padding:12px 0;
+}
+
+.logo-area{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.nav-profile{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  object-fit:cover;
+  border:2px solid rgba(34,197,94,0.4);
+
+  opacity:0;
+  transform:translateX(-20px);
+
+  transition:0.4s ease;
+}
+
+.nav.scrolled .nav-profile{
+  opacity:1;
+  transform:translateX(0);
+
+  box-shadow:
+  0 0 20px rgba(34,197,94,0.35);
 }
 
 .logo{
-  font-size:24px;
+  font-size:22px;
   font-weight:800;
 }
 
@@ -102,16 +139,17 @@ body::before{
 .nav-links a{
   text-decoration:none;
   color:var(--sub);
-  margin-left:24px;
+  margin-left:25px;
   transition:0.3s;
-  font-size:15px;
 }
 
-.nav-links a:hover{
+.nav-links a:hover,
+.nav-links a.active{
   color:var(--primary);
 }
 
 /* HERO */
+
 .hero{
   min-height:100vh;
   display:flex;
@@ -130,18 +168,17 @@ body::before{
   align-items:center;
   gap:10px;
   padding:10px 16px;
-  background:rgba(34,197,94,0.12);
-  border:1px solid rgba(34,197,94,0.25);
   border-radius:999px;
-  margin-bottom:25px;
+  background:rgba(34,197,94,0.12);
   color:var(--primary);
-  font-size:14px;
+  margin-bottom:25px;
+  border:1px solid rgba(34,197,94,0.2);
 }
 
 .hero h1{
   font-size:64px;
   line-height:1.1;
-  margin-bottom:24px;
+  margin-bottom:25px;
 }
 
 .hero h1 span{
@@ -166,10 +203,10 @@ body::before{
   border-radius:14px;
   text-decoration:none;
   font-weight:600;
-  transition:0.3s;
   display:inline-flex;
   align-items:center;
   gap:10px;
+  transition:0.3s;
 }
 
 .btn-primary{
@@ -190,32 +227,62 @@ body::before{
   background:var(--soft);
 }
 
+/* HERO IMAGE */
+
 .hero-image{
   position:relative;
   text-align:center;
 }
 
 .glow{
+  position:absolute;
   width:380px;
   height:380px;
-  position:absolute;
   background:rgba(34,197,94,0.18);
   filter:blur(120px);
-  z-index:-1;
   top:50%;
   left:50%;
   transform:translate(-50%,-50%);
+  z-index:-1;
 }
 
 .profile{
   width:340px;
   height:340px;
-  object-fit:cover;
   border-radius:35px;
+  object-fit:cover;
+  animation:float 4s ease-in-out infinite;
   border:2px solid rgba(255,255,255,0.08);
   box-shadow:0 20px 60px rgba(0,0,0,0.4);
+}
+
+.floating-tech{
+  position:absolute;
+  padding:10px 18px;
+  border-radius:999px;
+  background:rgba(15,23,42,0.95);
+  border:1px solid rgba(255,255,255,0.08);
+  backdrop-filter:blur(10px);
+  font-size:13px;
   animation:float 4s ease-in-out infinite;
 }
+
+.tech1{
+  top:20px;
+  left:0;
+}
+
+.tech2{
+  bottom:30px;
+  left:-20px;
+}
+
+.tech3{
+  top:50%;
+  right:-30px;
+}
+
+/* STATS */
 
 .stats{
   display:grid;
@@ -228,45 +295,48 @@ body::before{
   background:var(--card);
   padding:22px;
   border-radius:22px;
-  border:1px solid rgba(255,255,255,0.05);
   text-align:center;
 }
 
 .stat-card h3{
   color:var(--primary);
   font-size:28px;
-  margin-bottom:6px;
+  margin-bottom:5px;
 }
 
 .stat-card p{
-  margin:0;
+  color:var(--sub);
   font-size:14px;
 }
 
 /* SECTION */
+
 .section{
   padding:110px 0;
 }
 
 .section-title{
-  font-size:44px;
+  font-size:42px;
   margin-bottom:15px;
 }
 
 .section-sub{
   color:var(--sub);
-  margin-bottom:55px;
+  margin-bottom:50px;
   line-height:1.8;
 }
 
-/* ABOUT */
-.about-grid{
+/* CARDS */
+
+.about-grid,
+.projects{
   display:grid;
-  grid-template-columns:repeat(2,1fr);
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
   gap:25px;
 }
 
-.card{
+.card,
+.project-card{
   background:var(--card);
   padding:35px;
   border-radius:28px;
@@ -274,7 +344,8 @@ body::before{
   transition:0.3s;
 }
 
-.card:hover{
+.card:hover,
+.project-card:hover{
   transform:translateY(-8px);
   border-color:rgba(34,197,94,0.3);
 }
@@ -283,72 +354,26 @@ body::before{
   width:60px;
   height:60px;
   border-radius:18px;
+  background:rgba(34,197,94,0.12);
   display:flex;
   align-items:center;
   justify-content:center;
-  background:rgba(34,197,94,0.12);
   color:var(--primary);
   font-size:24px;
   margin-bottom:20px;
 }
 
-.card h3{
-  margin-bottom:14px;
-}
-
-.card p{
+.card p,
+.project-card p{
   color:var(--sub);
   line-height:1.8;
-}
-
-/* PROJECTS */
-.projects{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-  gap:28px;
-}
-
-.project-card{
-  overflow:hidden;
-  border-radius:28px;
-  background:var(--card);
-  border:1px solid rgba(255,255,255,0.05);
-  transition:0.3s;
-}
-
-.project-card:hover{
-  transform:translateY(-10px);
-}
-
-.project-image{
-  height:200px;
-  background:linear-gradient(135deg,var(--primary),var(--secondary));
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:48px;
-  color:white;
-}
-
-.project-content{
-  padding:28px;
-}
-
-.project-content h3{
-  margin-bottom:14px;
-}
-
-.project-content p{
-  color:var(--sub);
-  line-height:1.8;
-  margin-bottom:20px;
 }
 
 .tags{
   display:flex;
-  flex-wrap:wrap;
   gap:10px;
-  margin-bottom:24px;
+  flex-wrap:wrap;
+  margin-top:20px;
 }
 
 .tag{
@@ -360,56 +385,50 @@ body::before{
 }
 
 /* SKILLS */
-.skills-grid{
+
+.skills{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
   gap:20px;
 }
 
-.skill-card{
+.skill{
   background:var(--card);
-  border-radius:24px;
   padding:30px;
+  border-radius:24px;
   text-align:center;
-  border:1px solid rgba(255,255,255,0.05);
 }
 
-.skill-card i{
+.skill i{
   font-size:42px;
   color:var(--primary);
-  margin-bottom:16px;
+  margin-bottom:15px;
 }
 
-/* EXPERIENCE */
+/* TIMELINE */
+
 .timeline{
-  position:relative;
-  padding-left:30px;
   border-left:2px solid rgba(34,197,94,0.2);
+  padding-left:30px;
 }
 
 .timeline-item{
-  position:relative;
   margin-bottom:45px;
+  position:relative;
 }
 
 .timeline-item::before{
   content:'';
   width:16px;
   height:16px;
-  background:var(--primary);
   border-radius:50%;
+  background:var(--primary);
   position:absolute;
   left:-39px;
-  top:4px;
-}
-
-.timeline-item h3{
-  margin-bottom:8px;
+  top:5px;
 }
 
 .timeline-item span{
-  display:inline-block;
-  margin-bottom:10px;
   color:var(--primary);
   font-size:14px;
 }
@@ -417,88 +436,85 @@ body::before{
 .timeline-item p{
   color:var(--sub);
   line-height:1.8;
+  margin-top:10px;
 }
 
 /* CONTACT */
+
 .contact-box{
-  background:linear-gradient(135deg, rgba(34,197,94,0.15), rgba(59,130,246,0.08));
+  background:linear-gradient(
+  135deg,
+  rgba(34,197,94,0.15),
+  rgba(59,130,246,0.08));
+
   padding:60px;
   border-radius:35px;
-  border:1px solid rgba(255,255,255,0.05);
   text-align:center;
-}
-
-.contact-box h2{
-  font-size:40px;
-  margin-bottom:20px;
 }
 
 .contact-box p{
   color:var(--sub);
   line-height:1.8;
-  margin-bottom:30px;
-}
-
-.contact-links{
-  display:flex;
-  justify-content:center;
-  flex-wrap:wrap;
-  gap:16px;
+  margin:20px 0 30px;
 }
 
 /* FOOTER */
+
 .footer{
   padding:40px 0 120px;
   text-align:center;
   color:var(--sub);
-  border-top:1px solid rgba(255,255,255,0.05);
 }
 
 /* MOBILE NAV */
+
 .mobile-nav{
   position:fixed;
-  bottom:14px;
+  bottom:15px;
   left:50%;
   transform:translateX(-50%);
   width:95%;
   max-width:520px;
+
   display:none;
   justify-content:space-around;
   align-items:center;
+
   background:rgba(15,23,42,0.95);
   border:1px solid rgba(255,255,255,0.06);
+
   backdrop-filter:blur(20px);
+
   border-radius:24px;
   padding:14px 10px;
+
   z-index:999;
 }
 
 .mobile-nav a{
   text-decoration:none;
   color:var(--sub);
-  font-size:12px;
   display:flex;
   flex-direction:column;
   align-items:center;
   gap:5px;
+  font-size:12px;
 }
 
-.mobile-nav i{
-  font-size:18px;
-}
-
-.mobile-nav a:hover{
+.mobile-nav a.active{
   color:var(--primary);
 }
 
 /* ANIMATION */
+
 @keyframes float{
-  0%{transform:translateY(0px)}
+  0%{transform:translateY(0)}
   50%{transform:translateY(-10px)}
-  100%{transform:translateY(0px)}
+  100%{transform:translateY(0)}
 }
 
 /* RESPONSIVE */
+
 @media(max-width:900px){
 
 body{
@@ -518,12 +534,8 @@ body{
   min-height:auto;
 }
 
-.hero-content,
-.about-grid{
+.hero-content{
   grid-template-columns:1fr;
-}
-
-.hero-text{
   text-align:center;
 }
 
@@ -531,8 +543,7 @@ body{
   font-size:42px;
 }
 
-.hero-btns,
-.contact-links{
+.hero-btns{
   justify-content:center;
 }
 
@@ -543,10 +554,6 @@ body{
 
 .stats{
   grid-template-columns:1fr;
-}
-
-.section-title{
-  font-size:34px;
 }
 
 .contact-box{
@@ -561,420 +568,582 @@ body{
 <body>
 
 <!-- NAVBAR -->
+
 <nav class="nav">
-  <div class="container nav-wrapper">
 
-    <div class="logo">
-      Mun<span>Rohim</span>
-    </div>
+<div class="container nav-wrapper">
 
-    <div class="nav-links">
-      <a href="#about">About</a>
-      <a href="#projects">Projects</a>
-      <a href="#skills">Skills</a>
-      <a href="#experience">Experience</a>
-      <a href="#contact">Contact</a>
-    </div>
+<div class="logo-area">
 
-  </div>
+<img src="profile.jpg"
+class="nav-profile">
+
+<div class="logo">
+Mun<span> Rohim</span>
+</div>
+
+</div>
+
+<div class="nav-links">
+
+<a href="#about">About</a>
+<a href="#projects">Projects</a>
+<a href="#skills">Skills</a>
+<a href="#experience">Experience</a>
+<a href="#contact">Contact</a>
+
+</div>
+
+</div>
+
 </nav>
 
 <!-- HERO -->
+
 <section class="hero">
-  <div class="container hero-content">
 
-    <div class="hero-text">
+<div class="container hero-content">
 
-      <div class="badge">
-        <i class="fa-solid fa-circle-check"></i>
-        Available for freelance & collaboration
-      </div>
+<div class="hero-text">
 
-      <h1>
-        Backend Engineer &
-        <span>System Developer</span>
-      </h1>
+<div class="badge">
+<i class="fa-solid fa-circle-check"></i>
+Available for freelance & collaboration
+</div>
 
-      <p>
-        Backend developer focused on scalable systems, REST API architecture,
-        Laravel development, database optimization, and network infrastructure.
-        Experienced handling server environments and operational systems.
-      </p>
+<h1>
+<span id="typing"></span>
+</h1>
 
-      <div class="hero-btns">
+<p>
+Backend developer focused on scalable systems,
+REST APIs, Laravel development,
+database optimization, and server infrastructure.
+</p>
 
-        <a href="https://github.com/mr-munrohim" class="btn btn-primary">
-          <i class="fa-brands fa-github"></i>
-          GitHub
-        </a>
+<div class="hero-btns">
 
-        <a href="mailto:mr.munrohim@gmail.com" class="btn btn-secondary">
-          <i class="fa-solid fa-envelope"></i>
-          Contact Me
-        </a>
+<a href="https://github.com/mr-munrohim"
+class="btn btn-primary">
 
-      </div>
+<i class="fa-brands fa-github"></i>
+GitHub
 
-      <div class="stats">
+</a>
 
-        <div class="stat-card">
-          <h3>3+</h3>
-          <p>Years Experience</p>
-        </div>
+<a href="mailto:mr.munrohim@gmail.com"
+class="btn btn-secondary">
 
-        <div class="stat-card">
-          <h3>10+</h3>
-          <p>Backend Projects</p>
-        </div>
+<i class="fa-solid fa-envelope"></i>
+Contact
 
-        <div class="stat-card">
-          <h3>24/7</h3>
-          <p>System Enthusiast</p>
-        </div>
+</a>
 
-      </div>
+<a href="cv.pdf"
+download
+class="btn btn-secondary">
 
-    </div>
+<i class="fa-solid fa-download"></i>
+Download CV
 
-    <div class="hero-image">
-      <div class="glow"></div>
+</a>
 
-      <img src="profile.jpg"
-           class="profile"
-           alt="Mun Rohim">
-    </div>
+</div>
 
-  </div>
+<div class="stats">
+
+<div class="stat-card">
+<h3>3+</h3>
+<p>Years Experience</p>
+</div>
+
+<div class="stat-card">
+<h3>10+</h3>
+<p>Projects</p>
+</div>
+
+<div class="stat-card">
+<h3>24/7</h3>
+<p>System Enthusiast</p>
+</div>
+
+</div>
+
+</div>
+
+<div class="hero-image">
+
+<div class="glow"></div>
+
+<img src="profile.jpg"
+class="profile">
+
+<div class="floating-tech tech1">
+Laravel
+</div>
+
+<div class="floating-tech tech2">
+REST API
+</div>
+
+<div class="floating-tech tech3">
+MySQL
+</div>
+
+</div>
+
+</div>
+
 </section>
 
 <!-- ABOUT -->
+
 <section class="section" id="about">
 
-  <div class="container">
+<div class="container">
 
-    <h2 class="section-title">About Me</h2>
+<h2 class="section-title">
+About Me
+</h2>
 
-    <p class="section-sub">
-      Passionate about backend systems, infrastructure, and building reliable applications.
-    </p>
+<p class="section-sub">
+Passionate about backend systems,
+infrastructure,
+and scalable web applications.
+</p>
 
-    <div class="about-grid">
+<div class="about-grid">
 
-      <div class="card">
+<div class="card">
 
-        <div class="card-icon">
-          <i class="fa-solid fa-code"></i>
-        </div>
+<div class="card-icon">
+<i class="fa-solid fa-code"></i>
+</div>
 
-        <h3>Backend Development</h3>
+<h3>Backend Development</h3>
 
-        <p>
-          Building secure Laravel applications, REST APIs,
-          authentication systems, booking workflows,
-          and scalable backend architectures.
-        </p>
+<p>
+Building Laravel applications,
+authentication systems,
+REST APIs,
+and scalable backend architectures.
+</p>
 
-      </div>
+</div>
 
-      <div class="card">
+<div class="card">
 
-        <div class="card-icon">
-          <i class="fa-solid fa-server"></i>
-        </div>
+<div class="card-icon">
+<i class="fa-solid fa-server"></i>
+</div>
 
-        <h3>Server & Infrastructure</h3>
+<h3>Infrastructure & Network</h3>
 
-        <p>
-          Managing local server environments,
-          networking systems, MySQL databases,
-          deployment workflows, and infrastructure optimization.
-        </p>
+<p>
+Managing local servers,
+database systems,
+LAN configuration,
+and deployment workflows.
+</p>
 
-      </div>
+</div>
 
-    </div>
+</div>
 
-  </div>
+<img
+src="https://github-readme-stats.vercel.app/api?username=mr-munrohim&show_icons=true&theme=tokyonight"
+style="
+width:100%;
+border-radius:24px;
+margin-top:30px;
+">
+
+</div>
 
 </section>
 
 <!-- PROJECTS -->
+
 <section class="section" id="projects">
 
-  <div class="container">
+<div class="container">
 
-    <h2 class="section-title">Featured Projects</h2>
+<h2 class="section-title">
+Featured Projects
+</h2>
 
-    <p class="section-sub">
-      Selected backend engineering and infrastructure projects.
-    </p>
+<p class="section-sub">
+Selected backend engineering projects.
+</p>
 
-    <div class="projects">
+<div class="projects">
 
-      <div class="project-card">
+<div class="project-card">
 
-        <div class="project-image">
-          <i class="fa-solid fa-credit-card"></i>
-        </div>
+<h3>Booking & Payment API</h3>
 
-        <div class="project-content">
+<p>
+Reservation and transaction backend system
+with authentication and scalable API architecture.
+</p>
 
-          <h3>Booking & Payment API</h3>
+<div class="tags">
+<div class="tag">Laravel</div>
+<div class="tag">JWT</div>
+<div class="tag">REST API</div>
+<div class="tag">MySQL</div>
+</div>
 
-          <p>
-            Reservation and transaction backend system with authentication,
-            payment integration, and scalable API architecture.
-          </p>
+</div>
 
-          <div class="tags">
-            <div class="tag">Laravel</div>
-            <div class="tag">JWT</div>
-            <div class="tag">REST API</div>
-            <div class="tag">MySQL</div>
-          </div>
+<div class="project-card">
 
-          <a href="https://github.com/mr-munrohim"
-             class="btn btn-primary">
-             View Project
-          </a>
+<h3>School Administration System</h3>
 
-        </div>
+<p>
+Administrative workflow system
+for operational and document management.
+</p>
 
-      </div>
+<div class="tags">
+<div class="tag">PHP</div>
+<div class="tag">Bootstrap</div>
+<div class="tag">MySQL</div>
+</div>
 
-      <div class="project-card">
+</div>
 
-        <div class="project-image">
-          <i class="fa-solid fa-school"></i>
-        </div>
+<div class="project-card">
 
-        <div class="project-content">
+<h3>Server & Network Setup</h3>
 
-          <h3>School Administration System</h3>
+<p>
+Infrastructure optimization,
+local network configuration,
+and multi-user server environment.
+</p>
 
-          <p>
-            Administrative system for document processing,
-            operational workflows, and management reporting.
-          </p>
+<div class="tags">
+<div class="tag">Apache</div>
+<div class="tag">Networking</div>
+<div class="tag">Database</div>
+</div>
 
-          <div class="tags">
-            <div class="tag">PHP</div>
-            <div class="tag">Bootstrap</div>
-            <div class="tag">MySQL</div>
-          </div>
+</div>
 
-        </div>
+</div>
 
-      </div>
-
-      <div class="project-card">
-
-        <div class="project-image">
-          <i class="fa-solid fa-network-wired"></i>
-        </div>
-
-        <div class="project-content">
-
-          <h3>Server & Network Configuration</h3>
-
-          <p>
-            Local network setup, server optimization,
-            and infrastructure configuration for multi-user systems.
-          </p>
-
-          <div class="tags">
-            <div class="tag">Apache</div>
-            <div class="tag">Networking</div>
-            <div class="tag">Database</div>
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
+</div>
 
 </section>
 
 <!-- SKILLS -->
+
 <section class="section" id="skills">
 
-  <div class="container">
+<div class="container">
 
-    <h2 class="section-title">Tech Stack</h2>
+<h2 class="section-title">
+Tech Stack
+</h2>
 
-    <p class="section-sub">
-      Technologies and tools used in daily development workflow.
-    </p>
+<div class="skills">
 
-    <div class="skills-grid">
+<div class="skill">
+<i class="fa-brands fa-laravel"></i>
+<h3>Laravel</h3>
+</div>
 
-      <div class="skill-card">
-        <i class="fa-brands fa-laravel"></i>
-        <h3>Laravel</h3>
-      </div>
+<div class="skill">
+<i class="fa-brands fa-php"></i>
+<h3>PHP</h3>
+</div>
 
-      <div class="skill-card">
-        <i class="fa-brands fa-php"></i>
-        <h3>PHP</h3>
-      </div>
+<div class="skill">
+<i class="fa-solid fa-database"></i>
+<h3>MySQL</h3>
+</div>
 
-      <div class="skill-card">
-        <i class="fa-solid fa-database"></i>
-        <h3>MySQL</h3>
-      </div>
+<div class="skill">
+<i class="fa-solid fa-code"></i>
+<h3>REST API</h3>
+</div>
 
-      <div class="skill-card">
-        <i class="fa-solid fa-code"></i>
-        <h3>REST API</h3>
-      </div>
+<div class="skill">
+<i class="fa-brands fa-git-alt"></i>
+<h3>Git</h3>
+</div>
 
-      <div class="skill-card">
-        <i class="fa-brands fa-git-alt"></i>
-        <h3>Git</h3>
-      </div>
+<div class="skill">
+<i class="fa-brands fa-linux"></i>
+<h3>Linux</h3>
+</div>
 
-      <div class="skill-card">
-        <i class="fa-brands fa-linux"></i>
-        <h3>Linux Server</h3>
-      </div>
+</div>
 
-      <div class="skill-card">
-        <i class="fa-solid fa-network-wired"></i>
-        <h3>Networking</h3>
-      </div>
-
-      <div class="skill-card">
-        <i class="fa-solid fa-paper-plane"></i>
-        <h3>Postman</h3>
-      </div>
-
-    </div>
-
-  </div>
+</div>
 
 </section>
 
 <!-- EXPERIENCE -->
-<section class="section" id="experience">
 
-  <div class="container">
+<section class="section"
+id="experience">
 
-    <h2 class="section-title">Experience</h2>
+<div class="container">
 
-    <p class="section-sub">
-      Technical and operational experience in systems and backend development.
-    </p>
+<h2 class="section-title">
+Experience
+</h2>
 
-    <div class="timeline">
+<div class="timeline">
 
-      <div class="timeline-item">
-        <h3>System & Database Administration</h3>
-        <span>SKB Kabupaten Sarolangun</span>
-        <p>
-          Managing database systems, operational workflows,
-          local servers, and technical administration.
-        </p>
-      </div>
+<div class="timeline-item">
 
-      <div class="timeline-item">
-        <h3>Backend Web Development</h3>
-        <span>Laravel & PHP Ecosystem</span>
-        <p>
-          Developing APIs, backend logic,
-          authentication systems, and scalable web applications.
-        </p>
-      </div>
+<h3>System & Database Administration</h3>
 
-      <div class="timeline-item">
-        <h3>Network Infrastructure</h3>
-        <span>Local Server Environment</span>
-        <p>
-          Configuring local area networks,
-          deployment environments, and multi-user systems.
-        </p>
-      </div>
+<span>SKB Kabupaten Sarolangun</span>
 
-    </div>
+<p>
+Managing operational systems,
+database workflows,
+and local infrastructure.
+</p>
 
-  </div>
+</div>
+
+<div class="timeline-item">
+
+<h3>Backend Web Development</h3>
+
+<span>Laravel Ecosystem</span>
+
+<p>
+Developing APIs,
+authentication systems,
+and backend architecture.
+</p>
+
+</div>
+
+<div class="timeline-item">
+
+<h3>Network Infrastructure</h3>
+
+<span>Local Server Environment</span>
+
+<p>
+Configuring LAN systems,
+deployment workflows,
+and local server optimization.
+</p>
+
+</div>
+
+</div>
+
+</div>
 
 </section>
 
 <!-- CONTACT -->
-<section class="section" id="contact">
 
-  <div class="container">
+<section class="section"
+id="contact">
 
-    <div class="contact-box">
+<div class="container">
 
-      <h2>Let's Build Something Great</h2>
+<div class="contact-box">
 
-      <p>
-        Open for collaboration, backend development,
-        system administration, and software engineering opportunities.
-      </p>
+<h2>
+Let's Build Something Great
+</h2>
 
-      <div class="contact-links">
+<p>
+Open for collaboration,
+backend development,
+and software engineering opportunities.
+</p>
 
-        <a href="mailto:mr.munrohim@gmail.com"
-           class="btn btn-primary">
-           <i class="fa-solid fa-envelope"></i>
-           Email Me
-        </a>
+<div class="hero-btns">
 
-        <a href="https://github.com/mr-munrohim"
-           class="btn btn-secondary">
-           <i class="fa-brands fa-github"></i>
-           GitHub Profile
-        </a>
+<a href="mailto:mr.munrohim@gmail.com"
+class="btn btn-primary">
 
-      </div>
+<i class="fa-solid fa-envelope"></i>
+Email Me
 
-    </div>
+</a>
 
-  </div>
+<a href="https://github.com/mr-munrohim"
+class="btn btn-secondary">
+
+<i class="fa-brands fa-github"></i>
+GitHub
+
+</a>
+
+</div>
+
+</div>
+
+</div>
 
 </section>
 
 <!-- FOOTER -->
+
 <footer class="footer">
-  <div class="container">
-    © 2026 Mun Rohim — Backend Engineer & System Developer
-  </div>
+
+<div class="container">
+© 2026 Mun Rohim —
+Backend Engineer & System Developer
+</div>
+
 </footer>
 
-<!-- MOBILE NAVIGATION -->
+<!-- MOBILE NAV -->
+
 <div class="mobile-nav">
 
-  <a href="#">
-    <i class="fa-solid fa-house"></i>
-    <span>Home</span>
-  </a>
+<a href="#">
+<i class="fa-solid fa-house"></i>
+Home
+</a>
 
-  <a href="#about">
-    <i class="fa-solid fa-user"></i>
-    <span>About</span>
-  </a>
+<a href="#about">
+<i class="fa-solid fa-user"></i>
+About
+</a>
 
-  <a href="#projects">
-    <i class="fa-solid fa-code"></i>
-    <span>Projects</span>
-  </a>
+<a href="#projects">
+<i class="fa-solid fa-code"></i>
+Projects
+</a>
 
-  <a href="#skills">
-    <i class="fa-solid fa-layer-group"></i>
-    <span>Skills</span>
-  </a>
+<a href="#skills">
+<i class="fa-solid fa-layer-group"></i>
+Skills
+</a>
 
-  <a href="#contact">
-    <i class="fa-solid fa-envelope"></i>
-    <span>Contact</span>
-  </a>
+<a href="#contact">
+<i class="fa-solid fa-envelope"></i>
+Contact
+</a>
 
 </div>
+
+<script>
+
+/* NAVBAR SCROLL */
+
+const nav = document.querySelector('.nav');
+
+window.addEventListener('scroll', function(){
+
+if(window.scrollY > 120){
+nav.classList.add('scrolled');
+}else{
+nav.classList.remove('scrolled');
+}
+
+/* ACTIVE MENU */
+
+const sections = document.querySelectorAll('section');
+
+const navLinks =
+document.querySelectorAll('.nav-links a');
+
+const mobileLinks =
+document.querySelectorAll('.mobile-nav a');
+
+let current = '';
+
+sections.forEach(section => {
+
+const sectionTop =
+section.offsetTop - 200;
+
+if(scrollY >= sectionTop){
+current = section.getAttribute('id');
+}
+
+});
+
+navLinks.forEach(link => {
+
+link.classList.remove('active');
+
+if(link.getAttribute('href')
+=== '#' + current){
+
+link.classList.add('active');
+
+}
+
+});
+
+mobileLinks.forEach(link => {
+
+link.classList.remove('active');
+
+if(link.getAttribute('href')
+=== '#' + current){
+
+link.classList.add('active');
+
+}
+
+});
+
+});
+
+/* TYPING EFFECT */
+
+const texts = [
+"Backend Engineer",
+"Laravel Developer",
+"System Developer",
+"API Engineer"
+];
+
+let count = 0;
+let index = 0;
+let currentText = '';
+let letter = '';
+
+(function type(){
+
+if(count === texts.length){
+count = 0;
+}
+
+currentText = texts[count];
+
+letter =
+currentText.slice(0, ++index);
+
+document
+.getElementById('typing')
+.textContent = letter;
+
+if(letter.length === currentText.length){
+
+setTimeout(() => {
+count++;
+index = 0;
+type();
+},1500);
+
+}else{
+
+setTimeout(type,80);
+
+}
+
+})();
+
+</script>
 
 </body>
 </html>
